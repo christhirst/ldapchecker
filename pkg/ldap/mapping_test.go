@@ -23,7 +23,7 @@ func TestAtributeMapping(t *testing.T) {
 	var ii = &AllLdap{AllConns: map[string]*ConnsLdap{}}
 	path := ""
 	fileName := "ldapconfig"
-	err := ii.InitConn(path, fileName)
+	_,err := ii.InitConn(path, fileName)
 	if err != nil {
 		t.Error(err)
 	}
@@ -41,7 +41,7 @@ func TestExtractValue(t *testing.T) {
 	var ii = &AllLdap{AllConns: map[string]*ConnsLdap{}}
 	path := ""
 	fileName := "ldapconfig"
-	err := ii.InitConn(path, fileName)
+	_,err := ii.InitConn(path, fileName)
 	if err != nil {
 		t.Error(err)
 	}

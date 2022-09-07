@@ -67,7 +67,7 @@ func SetTicker(sec int64) *time.Ticker {
 func (c *AllLdap) ReloadConf() (*AllLdap, error) {
 	path := ""
 	fileName := "ldapconfig"
-	err := c.InitConn(path, fileName)
+	_, err := c.InitConn(path, fileName)
 
 	return c, err
 }
@@ -76,7 +76,7 @@ func (c *AllLdap) StartSync() {
 	path := ""
 	fileName := "ldapconfig"
 	fmt.Println(c.AllConns)
-	err := c.InitConn(path, fileName)
+	_, err := c.InitConn(path, fileName)
 	if err != nil {
 		log.Error().Err(err)
 	}

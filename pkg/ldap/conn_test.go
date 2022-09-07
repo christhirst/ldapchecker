@@ -9,7 +9,7 @@ func TestInitConn(t *testing.T) {
 	fileName := "ldapconfig"
 
 	var allConnections = &AllLdap{map[string]*ConnsLdap{}}
-	err := allConnections.InitConn(path, fileName)
+	_, err := allConnections.InitConn(path, fileName)
 	if err != nil {
 		t.Errorf(err.Error(), "Initialize failed")
 	}

@@ -4,6 +4,6 @@ package ldap
 //login möglich
 //suche möglich
 
-func (c *AllLdap) Availabiltiy() {
+func Availabiltiy(s []string) {
 
 }

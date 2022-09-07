@@ -25,7 +25,8 @@ func HardCon() (*ConnLdap, error) {
 	return ls, err
 }
 
-func (a *AllLdap) InitConn(path string, fileName string) error {
+func (a *AllLdap) InitConn(path string, fileName string) ([]string, error) {
+	conerror := []string{}
 	configsFromFile, err := ParseConfig(path, fileName)
 	fmt.Println(configsFromFile)
 	if err != nil {
@@ -42,7 +43,10 @@ func (a *AllLdap) InitConn(path string, fileName string) error {
 			a.AllConns[k] = cons
 			//create Connection
 			log.Info().Msgf("Trying connect to %s", i)
-			_, err := a.AllConns[k].Conns[i].SingleCon(v.Hostname, v.Port, v.Starttls, v.Bindusername, v.Bindpassword)
+			cc, err := a.AllConns[k].Conns[i].SingleCon(v.Hostname, v.Port, v.Starttls, v.Bindusername, v.Bindpassword)
+			if cc == nil {
+				conerror = append(conerror, k)
+			}
 			if err != nil {
 				log.Error().Err(err).Msg("Can' read connection data from file")
 			}
@@ -51,7 +55,7 @@ func (a *AllLdap) InitConn(path string, fileName string) error {
 			log.Error().Err(err).Msg("Can' read connection data from file")
 		}
 	}
-	return err
+	return conerror, err
 }
 
 func (c *ConnLdap) SingleCon(hostname string, port int, starttls bool, bindusername string, bindpassword string) (*ldap.Conn, error) {

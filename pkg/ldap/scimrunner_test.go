@@ -10,7 +10,7 @@ func TestScimArray(t *testing.T) {
 	scimPort := 8380
 
 	var ldapServer = AllLdap{AllConns: map[string]*ConnsLdap{}}
-	err := ldapServer.InitConn(path, fileName)
+	_, err := ldapServer.InitConn(path, fileName)
 	if err != nil {
 		t.Error()
 	}

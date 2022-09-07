@@ -12,7 +12,7 @@ func TestSyncSingle(t *testing.T) {
 	fileName := "ldapconfig"
 	var hostBundle string = "THIRD"
 	var allConnections = &AllLdap{map[string]*ConnsLdap{}}
-	if err := allConnections.InitConn(path, fileName); err != nil {
+	if _, err := allConnections.InitConn(path, fileName); err != nil {
 		t.Error()
 	}
 
@@ -32,7 +32,7 @@ func TestSync(t *testing.T) {
 
 	var ii = &AllLdap{map[string]*ConnsLdap{}}
 
-	err := ii.InitConn(path, fileName)
+	_, err := ii.InitConn(path, fileName)
 	if err != nil {
 		t.Errorf("got %s", err)
 	}
@@ -66,7 +66,7 @@ func TestEntrysDiff(t *testing.T) {
 
 	var ii = &AllLdap{map[string]*ConnsLdap{}}
 
-	err := ii.InitConn(path, fileName)
+	_, err := ii.InitConn(path, fileName)
 	if err != nil {
 		t.Errorf("got %+v", err)
 	}
@@ -102,7 +102,7 @@ func TestStopSync(t *testing.T) {
 	fileName := "ldapconfig"
 	var ii = &AllLdap{map[string]*ConnsLdap{}}
 
-	err := ii.InitConn(path, fileName)
+	_, err := ii.InitConn(path, fileName)
 	if err != nil {
 		t.Errorf("got %+v", err)
 	}

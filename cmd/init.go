@@ -44,7 +44,8 @@ func Run() {
 	var ldapServer = &ldap.AllLdap{AllConns: map[string]*ldap.ConnsLdap{}}
 	path := ""
 	fileName := "ldapconfig"
-	err := ldapServer.InitConn(path, fileName)
+	ee, err := ldapServer.InitConn(path, fileName)
+	ldap.Availabiltiy(ee)
 	fmt.Println(err)
 
 }
