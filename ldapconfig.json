@@ -1,0 +1,82 @@
+{
+    "FIRST": {
+        "IN": {
+            "Basedn": "ou=users,dc=wimpi,dc=net",
+            "Bindpassword": "secret",
+            "Bindusername": "uid=admin,ou=system",
+            "Filter": "(&(objectclass=inetOrgPerson))",
+            "Hostname": "165.22.85.167",
+            "Mapping": true,
+            "Port": 10389,
+            "Starttls": false,
+            "SyncMode": "clone",
+            "Uid": "uid",
+            "frequence": 300,
+            "loglevel": "info"
+        },
+        "OUT": {
+            "Basedn": "dc=example,dc=org",
+            "Bindpassword": "admin",
+            "Bindusername": "cn=admin,dc=example,dc=org",
+            "Filter": "(&(objectclass=inetOrgPerson))",
+            "Hostname": "165.22.85.167",
+            "Mapping": true,
+            "Port": 389,
+            "Starttls": false,
+            "SyncMode": "source",
+            "Uid": "uid"
+        }
+    },
+    "SECOND": {
+        "IN": {
+            "Basedn": "dc=example,dc=org",
+            "Bindpassword": "admin",
+            "Bindusername": "cn=admin,dc=example,dc=org",
+            "Filter": "(&(objectclass=inetOrgPerson))",
+            "Hostname": "165.22.85.167",
+            "Mapping": true,
+            "Port": 388,
+            "Starttls": false,
+            "SyncMode": "clone",
+            "Uid": "uid"
+        },
+        "OUT": {
+            "Basedn": "dc=example,dc=org",
+            "Bindpassword": "admin",
+            "Bindusername": "cn=admin,dc=example,dc=org",
+            "Filter": "(&(objectclass=inetOrgPerson))",
+            "Hostname": "165.22.85.167",
+            "Mapping": true,
+            "Port": 389,
+            "Starttls": false,
+            "SyncMode": "source",
+            "Uid": "uid"
+        }
+    },
+    "THIRD": {
+        "IN": {
+            "Basedn": "dc=example,dc=org",
+            "Bindpassword": "admin",
+            "Bindusername": "cn=admin,dc=example,dc=org",
+            "Filter": "(&(objectclass=inetOrgPerson))",
+            "Hostname": "165.22.85.167",
+            "Mapping": true,
+            "Port": 388,
+            "Starttls": false,
+            "SyncMode": "clone",
+            "Uid": "uid"
+        },
+        "OUT": {
+            "Basedn": "dc=example,dc=org",
+            "Bindpassword": "admin",
+            "Bindusername": "cn=admin,dc=example,dc=org",
+            "Filter": "(&(objectclass=inetOrgPerson))",
+            "Hostname": "165.22.85.167",
+            "Mapping": true,
+            "Port": 389,
+            "Starttls": false,
+            "SyncMode": "source",
+            "Uid": "uid"
+        }
+    }
+}
