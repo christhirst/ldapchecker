@@ -41,6 +41,7 @@ func (a *AllLdap) InitConn(path string, fileName string) error {
 			cons.Conns[i] = &ConnLdap{ConnData: &savedPointer}
 			a.AllConns[k] = cons
 			//create Connection
+			log.Info().Msgf("Trying connect to %s", i)
 			_, err := a.AllConns[k].Conns[i].SingleCon(v.Hostname, v.Port, v.Starttls, v.Bindusername, v.Bindpassword)
 			if err != nil {
 				log.Error().Err(err).Msg("Can' read connection data from file")
@@ -58,17 +59,20 @@ func (c *ConnLdap) SingleCon(hostname string, port int, starttls bool, bindusern
 	c.Conn, err = ldap.Dial("tcp", fmt.Sprintf("%s:%d", hostname, port))
 	if err != nil {
 		log.Error().Err(err).Str(hostname, strconv.Itoa(port)).Msg("Connection Failed")
+		return nil, err
 	}
 	// Reconnect with TLS
 	if starttls == true {
 		err = c.Conn.StartTLS(&tls.Config{InsecureSkipVerify: true})
 		if err != nil {
 			log.Error().Err(err).Msg("TLS failed")
+			return nil, err
 		}
 	}
 	err = c.Conn.Bind(bindusername, bindpassword)
 	if err != nil {
 		log.Error().Err(err).Msg("Authentication failed")
+		return nil, err
 	}
 	return c.Conn, err
 }

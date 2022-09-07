@@ -9,4 +9,3 @@ func init() {
 func initConfig() {
 
 }
-func Run() {}

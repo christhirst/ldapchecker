@@ -1,6 +1,8 @@
 package ldap
 
 import (
+	"encoding/json"
+	"fmt"
 	"os"
 	"path/filepath"
 
@@ -24,7 +26,7 @@ func ChangeRootDir(path string) (string, error) {
 func ParseConfig(path string, fileName string) (map[string]map[string]ConnDataLdap, error) {
 	SetUpLogging()
 
-	/*file, err := OpenFile(path, fileName)
+	file, err := OpenFile(path, fileName)
 	fmt.Println(path, fileName)
 	if err != nil {
 		log.Error().Err(err).Msg("Path does not exist")
@@ -35,7 +37,7 @@ func ParseConfig(path string, fileName string) (map[string]map[string]ConnDataLd
 	if err != nil {
 		log.Error().Err(err).Msg("Unable to Unmarshal file")
 	}
-	*/
+
 	return nil, nil
 }
 
