@@ -1,0 +1,18 @@
+{
+    "cn": [
+        "{{cn}}"
+    ],
+    "mail": [
+        "{{sn}}mail"
+    ],
+    "sn": [
+        "{{sn}}"
+    ],
+    "uid": [
+        "{{uid}}"
+    ],
+    "objectclass": [
+        "top",
+        "inetOrgPerson"
+    ]
+}

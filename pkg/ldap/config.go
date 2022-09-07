@@ -38,7 +38,7 @@ func ParseConfig(path string, fileName string) (map[string]map[string]ConnDataLd
 		log.Error().Err(err).Msg("Unable to Unmarshal file")
 	}
 
-	return nil, nil
+	return jsonMap, err
 }
 
 func UniversalConfigPath() string {

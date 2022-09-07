@@ -25,18 +25,18 @@ func HardCon() (*ConnLdap, error) {
 	return ls, err
 }
 
-func (a *AllLdap) InitConn(path string, fileName string) ([]string, error) {
-	conerror := []string{}
+func (a *AllLdap) InitConn(path string, fileName string) (map[string][]string, error) {
+	conerror := map[string][]string{}
 	configsFromFile, err := ParseConfig(path, fileName)
 	fmt.Println(configsFromFile)
 	if err != nil {
 		log.Error().Err(err).Msg("Failed reading connection data from file")
 	}
 	for k, configFromFile := range configsFromFile {
-
 		ess, err := AttributeMappingMem(k)
-
 		cons := &ConnsLdap{map[string]*ConnLdap{}, ess, make(chan bool)}
+
+		conerrors := []string{}
 		for i, v := range configFromFile {
 			savedPointer := v
 			cons.Conns[i] = &ConnLdap{ConnData: &savedPointer}
@@ -45,12 +45,14 @@ func (a *AllLdap) InitConn(path string, fileName string) ([]string, error) {
 			log.Info().Msgf("Trying connect to %s", i)
 			cc, err := a.AllConns[k].Conns[i].SingleCon(v.Hostname, v.Port, v.Starttls, v.Bindusername, v.Bindpassword)
 			if cc == nil {
-				conerror = append(conerror, k)
+				conerrors = append(conerrors, i)
 			}
 			if err != nil {
 				log.Error().Err(err).Msg("Can' read connection data from file")
 			}
 		}
+		conerror[k] = conerrors
+
 		if err != nil {
 			log.Error().Err(err).Msg("Can' read connection data from file")
 		}
