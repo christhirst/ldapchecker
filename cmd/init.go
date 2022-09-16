@@ -45,7 +45,7 @@ func Run() {
 	path := ""
 	fileName := "ldapconfig"
 	ee, err := ldapServer.InitConn(path, fileName)
-	ldap.Availabiltiy(ee)
-	fmt.Println(err)
 
+	fmt.Println(err)
+	ldap.Availabiltiy(ldapServer, ee)
 }

@@ -45,7 +45,7 @@
             "Bindpassword": "admin",
             "Bindusername": "cn=admin,dc=example,dc=org",
             "Filter": "(&(objectclass=inetOrgPerson))",
-            "Hostname": "165.22.85.167",
+            "Hostname": "165.22.85.161",
             "Mapping": true,
             "Port": 389,
             "Starttls": false,
